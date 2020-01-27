@@ -13,10 +13,10 @@
         "keyboard-configuration/modelcode=SKIP ",
         "keyboard-configuration/layout=USA ",
         "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-        "passwd/user-fullname={{ user `ssh_fullname` }} ",
-        "passwd/user-password={{ user `ssh_password` }} ",
-        "passwd/user-password-again={{ user `ssh_password` }} ",
-        "passwd/username={{ user `ssh_username` }} ",
+	"passwd/user-fullname={{ user `ssh_fullname` }} ",
+	"passwd/user-password={{ user `ssh_password` }} ",
+	"passwd/user-password-again={{ user `ssh_password` }} ",
+	"passwd/username={{ user `ssh_username` }} ",
         "initrd=/install/initrd.gz -- <enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
@@ -49,19 +49,11 @@
     {
       "environment_vars": [
         "UPDATE={{user `update`}}",
-        "INSTALL_DEV_PACKAGES={{user `install_dev_packages`}}",
-        "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
-        "SSH_USERNAME={{user `ssh_username`}}",
-        "SSH_PASSWORD={{user `ssh_password`}}",
-        "http_proxy={{user `http_proxy`}}",
-        "https_proxy={{user `https_proxy`}}",
-        "ftp_proxy={{user `ftp_proxy`}}",
-        "rsync_proxy={{user `rsync_proxy`}}",
-        "no_proxy={{user `no_proxy`}}"
+        "INSTALL_DEV_PACKAGES={{user `install_dev_packages`}}"
       ],
-      "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "execute_command": "echo 'ubuntu' | sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "scripts/vagrant.sh",
+	"scripts/cloud-init.sh",
         "scripts/sshd.sh",
         "scripts/update.sh",
         "scripts/packages.sh",
@@ -81,7 +73,6 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "install_vagrant_key": "true",
     "install_dev_packages": "false",
     "iso_checksum": "de5ee8665048f009577763efbf4a6f0558833e59",
     "iso_checksum_type": "sha1",
@@ -92,12 +83,11 @@
     "no_proxy": "{{env `no_proxy`}}",
     "preseed" : "preseed.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
-    "hostname": "vagrant",
-    "ssh_fullname": "vagrant",
-    "ssh_password": "vagrant",
-    "ssh_username": "vagrant",
+    "hostname": "ubuntu",
+    "ssh_fullname": "ubuntu",
+    "ssh_password": "ubuntu",
+    "ssh_username": "ubuntu",
     "update": "false",
-    "vagrantfile_template": "",
     "version": "0.1.0",
     "vm_name": "ubuntu1604"
   }
